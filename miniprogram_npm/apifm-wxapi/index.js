@@ -904,7 +904,7 @@ module.exports = {
     return request('/userIm/empty', true, 'post', { token: token, uid: uid });
   },
   videoDetail: function videoDetail(videoId) {
-    return request('/media/video/detail', true, 'get', {
+    return request(COMMON_BASE_URL + subDomain + '/media/video/detail', false, 'get', {
       videoId: videoId
     });
   },
@@ -1236,15 +1236,21 @@ module.exports = {
     });
   },
   fxSaleroomRankDaily: function fxSaleroomRankDaily(page, pageSize, day) {
-    return request('/saleDistribution/sale-room-rank/daily', true, 'get', {
+    return request(COMMON_BASE_URL + subDomain + '/saleDistribution/sale-room-rank/daily', false, 'get', {
       page: page, pageSize: pageSize, day: day
     });
+  },
+  fxStatisticsDays: function fxStatisticsDays(data) {
+    return request(COMMON_BASE_URL + subDomain + '/saleDistribution/statistics/days', false, 'get', data);
+  },
+  fxUpgrade: function fxUpgrade(token) {
+    return request(COMMON_BASE_URL + subDomain + '/saleDistribution/upgrade', false, 'post', { token: token });
   },
   fxMembersStatistics: function fxMembersStatistics(token) {
     return request('/saleDistribution/members/statistics', true, 'get', { token: token });
   },
   fxMyCommisionStatistics: function fxMyCommisionStatistics(token, days) {
-    return request('/saleDistribution/my/commision', true, 'get', { token: token, days: days });
+    return request(COMMON_BASE_URL + subDomain + '/saleDistribution/my/commision', false, 'get', { token: token, days: days });
   },
   fxGoods: function fxGoods(data) {
     return request('/saleDistribution/goods', true, 'post', data);
@@ -1402,10 +1408,10 @@ module.exports = {
     return request('/order/refundApply/setBackLogistics', true, 'post', data);
   },
   cmsCategories: function cmsCategories() {
-    return request('/cms/category/list', true, 'get', {});
+    return request(COMMON_BASE_URL + subDomain + '/cms/category/list', false, 'get', {});
   },
   cmsCategoryDetail: function cmsCategoryDetail(id) {
-    return request('/cms/category/info', true, 'get', { id: id });
+    return request(COMMON_BASE_URL + subDomain + '/cms/category/info', false, 'get', { id: id });
   },
   cmsArticles: function cmsArticles(data) {
     return request('/cms/news/list', true, 'post', data);
@@ -1611,6 +1617,12 @@ module.exports = {
     var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
     return request('/uniqueId/get', true, 'get', { type: type });
+  },
+  sequence: function sequence() {
+    var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+    var defValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+    return request(COMMON_BASE_URL + subDomain + '/uniqueId/sequence', false, 'get', { type: type, defValue: defValue });
   },
   queryBarcode: function queryBarcode() {
     var barcode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
@@ -2135,7 +2147,7 @@ module.exports = {
     });
   },
   siteStatistics: function siteStatistics() {
-    return request('/site/statistics', true, 'get');
+    return request(COMMON_BASE_URL + subDomain + '/site/statistics', false, 'get');
   },
   orderStatistics: function orderStatistics(token) {
     return request('/order/statistics', true, 'get', {
@@ -2146,18 +2158,18 @@ module.exports = {
     return request('/order/statistics', true, 'get', data);
   },
   siteStatisticsSaleroom: function siteStatisticsSaleroom(data) {
-    return request('/site/statistics/saleroom', true, 'get', data);
+    return request(COMMON_BASE_URL + subDomain + '/site/statistics/saleroom', false, 'get', data);
   },
   siteStatisticsSaleroomYear: function siteStatisticsSaleroomYear() {
     var year = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-    return request('/site/statistics/saleroom/year', true, 'get', { year: year });
+    return request(COMMON_BASE_URL + subDomain + '/site/statistics/saleroom/year', false, 'get', { year: year });
   },
   bonusLog: function bonusLog(data) {
     return request('/bonusLog/list', true, 'post', data);
   },
   bonusLogV2: function bonusLogV2(data) {
-    return request(COMMON_BASE_URL + subDomain + '/bonusLog/list', true, 'post', data);
+    return request(COMMON_BASE_URL + subDomain + '/bonusLog/list', false, 'post', data);
   },
   mtjAsset: function mtjAsset(token) {
     return request('/mtj/asset', true, 'get', { token: token });
@@ -2769,16 +2781,16 @@ module.exports = {
   },
   // ocr
   ocrBusinessLicense: function ocrBusinessLicense(imageUrl) {
-    return request('/ocr/businessLicense', true, 'post', { imageUrl: imageUrl });
+    return request(COMMON_BASE_URL + subDomain + '/ocr/businessLicense', false, 'post', { imageUrl: imageUrl });
   },
   ocrIdcard: function ocrIdcard(imageUrl) {
-    return request('/ocr/idcard', true, 'post', { imageUrl: imageUrl });
+    return request(COMMON_BASE_URL + subDomain + '/ocr/idcard', false, 'post', { imageUrl: imageUrl });
   },
   ocrBankcard: function ocrBankcard(imageUrl) {
-    return request('/ocr/bankcard', true, 'post', { imageUrl: imageUrl });
+    return request(COMMON_BASE_URL + subDomain + '/ocr/bankcard', false, 'post', { imageUrl: imageUrl });
   },
   ocrDriverLicense: function ocrDriverLicense(imageUrl) {
-    return request('/ocr/driverLicense', true, 'post', { imageUrl: imageUrl });
+    return request(COMMON_BASE_URL + subDomain + '/ocr/driverLicense', false, 'post', { imageUrl: imageUrl });
   },
   // 朋友圈
   momentsPublish: function momentsPublish(data) {

@@ -315,7 +315,8 @@ Page({
             linkMan: res.name,
             mobile: res.phone,
             address: res.address,
-          }
+          },
+          address: res.address,
         })
         this.provinces(res.provinceCode, res.cityCode, res.countyCode)
       }
@@ -408,11 +409,29 @@ Page({
     wx.chooseLocation({
       success: (res) => {
         const addressData = this.data.addressData ? this.data.addressData : {}
-        addressData.address = res.address + res.name
+        addressData.address = res.name
         addressData.latitude = res.latitude
         addressData.longitude = res.longitude
         this.setData({
-          addressData
+          addressData,
+          address: res.name,
+        })
+        address_parse.smart(res.address + res.name).then(res => {
+          if (res.address) {
+            // 检测到收货地址
+            this.setData({
+              addressData: {
+                provinceId: res.provinceCode || '',
+                cityId: res.cityCode || '',
+                districtId: res.countyCode || '',
+                address: addressData.address,
+                latitude: addressData.latitude,
+                longitude: addressData.longitude
+              },
+              address: addressData.address,
+            })
+            this.provinces(res.provinceCode, res.cityCode, res.countyCode)
+          }
         })
       },
       fail: (e) => {

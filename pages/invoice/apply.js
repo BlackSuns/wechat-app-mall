@@ -81,7 +81,7 @@ Page({
     let mobile = this.data.mobile;
     let amount = this.data.amount;
     let consumption = this.data.consumption;
-    let remark = this.data.remark;
+    let remark = this.data.remark || '';
     let email = this.data.email
     let address = this.data.address;
     let bank = this.data.bank;
