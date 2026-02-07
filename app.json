@@ -64,7 +64,10 @@
     "pages/notagree/index",
     "pages/my/user-code",
     "pages/raffle/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/vip/index",
+    "pages/vip/detail",
+    "pages/vip/history"
   ],
   "requiredPrivateInfos": [
     "getLocation",

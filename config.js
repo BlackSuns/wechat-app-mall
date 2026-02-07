@@ -1,6 +1,6 @@
 module.exports = {
-  version: '26.1.18',
-  note: '订单详情，查看物流轨迹页面样式bug修复', // 这个为版本描述，无需修改
+  version: '26.2.7',
+  note: '增加会员等级在线购买功能【黄金会员、白金会员、钻石会员】', // 这个为版本描述，无需修改
   subDomain: 'tz', // 此处改成你自己的专属域名。什么是专属域名？请看教程 https://www.it120.cc/help/qr6l4m.html
   merchantId: 951, // 商户ID，可在后台工厂设置-->商户信息查看
   sdkAppID: 1400450467, // 腾讯实时音视频应用编号，请看教程 https://www.it120.cc/help/nxoqsl.html

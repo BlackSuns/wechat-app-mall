@@ -36,4 +36,9 @@ Page({
       wxbarcode.qrcode('qrcode', res.data, 480, 480);
     }
   },
+  onPullDownRefresh() {
+    this.getUserAmount()
+    this.dynamicUserCode()
+    wx.stopPullDownRefresh()
+  },
 })

@@ -18,6 +18,15 @@ Page({
     count_id_no_transfer: 0,
     nick: undefined,
     cardsExpanded: false, // 会员卡展开状态
+    
+    // 会员等级配置（根据不同等级显示不同图标和样式）
+    vipLevelConfig: {
+      1: { icon: '🥇', name: '黄金会员' },
+      2: { icon: '💎', name: '白金会员' },
+      3: { icon: '💠', name: '钻石会员' },
+      4: { icon: '👑', name: '至尊会员' },
+      5: { icon: '🔱', name: '皇冠会员' }
+    }
   },
 	onLoad() {
     this.readConfigVal()

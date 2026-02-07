@@ -6,6 +6,7 @@
   loading="{{ loading }}"
   disabled="{{ disabled }}"
   open-type="{{ openType }}"
+  business-id="{{ businessId }}"
   custom-class="van-goods-action-icon"
   session-from="{{ sessionFrom }}"
   app-parameter="{{ appParameter }}"

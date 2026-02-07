@@ -11,6 +11,7 @@
   close-on-click-overlay="{{ closeOnClickOverlay }}"
   root-portal="{{ rootPortal }}"
   bind:close="onClickOverlay"
+  bind:after-leave="onAfterLeave"
 >
   <view
     wx:if="{{ title || useTitleSlot  }}"
@@ -50,6 +51,7 @@
       button-id="{{ confirmButtonId }}"
       open-type="{{ confirmButtonOpenType }}"
       lang="{{ lang }}"
+      business-id="{{ businessId }}"
       session-from="{{ sessionFrom }}"
       send-message-title="{{ sendMessageTitle }}"
       send-message-path="{{ sendMessagePath }}"
@@ -100,6 +102,7 @@
         button-id="{{ confirmButtonId }}"
         open-type="{{ confirmButtonOpenType }}"
         lang="{{ lang }}"
+        business-id="{{ businessId }}"
         session-from="{{ sessionFrom }}"
         send-message-title="{{ sendMessageTitle }}"
         send-message-path="{{ sendMessagePath }}"

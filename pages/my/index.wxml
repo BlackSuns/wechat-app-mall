@@ -17,10 +17,6 @@
         <view class="user-detail">
           <view class="nickname-row">
             <text class="nickname" bindtap="editNick">{{ apiUserInfoMap.base.nick ? apiUserInfoMap.base.nick : '点击设置昵称' }}</text>
-            <view wx:if="{{ apiUserInfoMap.userLevel }}" class="user-level">
-              <text class="level-icon">👑</text>
-              <text class="level-text">{{ apiUserInfoMap.userLevel.name }}</text>
-            </view>
           </view>
           <view class="user-id" bind:tap="copyUid">ID: {{ apiUserInfoMap.base.id }}</view>
         </view>
@@ -32,6 +28,90 @@
         <view class="qr-text">会员码</view>
       </view>
     </view>
+    
+    <!-- 会员等级卡片 -->
+    <navigator url="/pages/vip/index" class="vip-card-wrapper">
+      <!-- 已开通会员 -->
+      <view wx:if="{{ apiUserInfoMap.userLevel }}" class="vip-card vip-card-active vip-level-{{ apiUserInfoMap.userLevel.level || 1 }}">
+        <view class="vip-card-bg">
+          <view class="vip-shine"></view>
+          <view class="vip-shine vip-shine-2"></view>
+          <view class="vip-decoration vip-decoration-1"></view>
+          <view class="vip-decoration vip-decoration-2"></view>
+        </view>
+        <view class="vip-card-content">
+          <view class="vip-main-info">
+            <view class="vip-badge-wrapper">
+              <view class="vip-badge">
+                <text class="vip-badge-icon">{{ vipLevelConfig[apiUserInfoMap.userLevel.level] ? vipLevelConfig[apiUserInfoMap.userLevel.level].icon : '👑' }}</text>
+              </view>
+              <view class="vip-badge-glow"></view>
+            </view>
+            <view class="vip-text-info">
+              <view class="vip-name-row">
+                <text class="vip-level-name">{{ apiUserInfoMap.userLevel.name }}</text>
+                <text class="vip-level-tag">VIP{{ apiUserInfoMap.userLevel.level || '' }}</text>
+              </view>
+              <view class="vip-desc">专属特权 · 尊享服务</view>
+            </view>
+          </view>
+          <view class="vip-action-btn">
+            <text class="vip-action-text">会员中心</text>
+            <text class="vip-action-arrow">›</text>
+          </view>
+        </view>
+        <view class="vip-card-footer">
+          <view class="vip-expire-info">
+            <text class="vip-expire-icon">⏰</text>
+            <text class="vip-expire-text">有效期至 {{ apiUserInfoMap.base.levelExpire || '长期有效' }}</text>
+          </view>
+          <!-- <view class="vip-upgrade-hint" wx:if="{{ apiUserInfoMap.userLevel.canUpgrade }}">
+            <text class="upgrade-hint-text">升级更高等级 ›</text>
+          </view> -->
+        </view>
+      </view>
+      
+      <!-- 未开通会员 -->
+      <view wx:else class="vip-card vip-card-inactive">
+        <view class="vip-card-bg">
+          <view class="vip-pattern"></view>
+        </view>
+        <view class="vip-card-content">
+          <view class="vip-main-info">
+            <view class="vip-badge-wrapper vip-badge-inactive">
+              <van-icon name="vip-card-o" size="64rpx" color="#666" />
+            </view>
+            <view class="vip-text-info">
+              <view class="vip-name-row">
+                <text class="vip-level-name vip-inactive-name">普通用户</text>
+              </view>
+              <view class="vip-desc vip-inactive-desc">开通会员，尊享多重特权</view>
+            </view>
+          </view>
+          <view class="vip-open-btn">
+            <text class="vip-open-text">立即开通</text>
+          </view>
+        </view>
+        <view class="vip-card-footer vip-benefits-preview">
+          <view class="benefit-item">
+            <text class="benefit-icon">🎁</text>
+            <text class="benefit-text">专属折扣</text>
+          </view>
+          <view class="benefit-item">
+            <text class="benefit-icon">⚡</text>
+            <text class="benefit-text">赠送积分</text>
+          </view>
+          <view class="benefit-item">
+            <text class="benefit-icon">🚀</text>
+            <text class="benefit-text">优先发货</text>
+          </view>
+          <view class="benefit-item">
+            <text class="benefit-icon">🎫</text>
+            <text class="benefit-text">专属优惠券</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
   </view>
 
   <!-- 资产卡片 -->
