@@ -674,7 +674,7 @@ module.exports = {
     return request('/shop/goods/priceMultilevels', true, 'get', data);
   },
   goodsRebate: function goodsRebate(token, goodsId) {
-    return request('/shop/goods/rebate/v2', true, 'get', {
+    return request(COMMON_BASE_URL + subDomain + '/shop/goods/rebate/v2', false, 'get', {
       token: token, goodsId: goodsId
     });
   },
@@ -1828,19 +1828,19 @@ module.exports = {
     return request(COMMON_BASE_URL + subDomain + '/user/dynamicUserCode', false, 'get', { token: token });
   },
   userLevelList: function userLevelList(data) {
-    return request('/user/level/list', true, 'post', data);
+    return request(COMMON_BASE_URL + subDomain + '/user/level/list', false, 'post', data);
   },
   userLevelDetail: function userLevelDetail(levelId) {
-    return request('/user/level/info', true, 'get', { id: levelId });
+    return request(COMMON_BASE_URL + subDomain + '/user/level/info', false, 'get', { id: levelId });
   },
   userLevelPrices: function userLevelPrices(levelId) {
-    return request('/user/level/prices', true, 'get', { levelId: levelId });
+    return request(COMMON_BASE_URL + subDomain + '/user/level/prices', false, 'get', { levelId: levelId });
   },
   userLevelBuy: function userLevelBuy(token, priceId) {
     var isAutoRenew = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
     var remark = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
 
-    return request('/user/level/buy', true, 'post', {
+    return request(COMMON_BASE_URL + subDomain + '/user/level/buy', false, 'post', {
       token: token,
       userLevelPriceId: priceId,
       isAutoRenew: isAutoRenew,
@@ -1848,7 +1848,7 @@ module.exports = {
     });
   },
   userLevelBuyLogs: function userLevelBuyLogs(data) {
-    return request('/user/level/buyLogs', true, 'post', data);
+    return request(COMMON_BASE_URL + subDomain + '/user/level/buyLogs', false, 'post', data);
   },
   messageList: function messageList(data) {
     return request('/user/message/list', true, 'post', data);

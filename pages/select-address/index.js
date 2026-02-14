@@ -4,7 +4,7 @@ const AUTH = require('../../utils/auth')
 const app = getApp()
 Page({
   data: {
-
+    page: 1
   },
   selectTap: function(e) {
     console.log(e);
@@ -32,26 +32,25 @@ Page({
     })
   },
 
-  onLoad: function() {
+  onLoad() {
+    
   },
   onShow: function() {
-    AUTH.checkHasLogined().then(isLogined => {
-      if (isLogined) {
-        this.initShippingAddress();
-      }
-    })
+    this.initShippingAddress();
   },
   async initShippingAddress() {
     wx.showLoading({
       title: '',
     })
-    const res = await WXAPI.queryAddress(wx.getStorageSync('token'))
+    const res = await WXAPI.queryAddressV2({
+      token: wx.getStorageSync('token')
+    })
     wx.hideLoading({
       success: (res) => {},
     })
     if (res.code == 0) {
       this.setData({
-        addressList: res.data
+        addressList: res.data.result
       });
     } else if (res.code == 700) {
       this.setData({
@@ -65,13 +64,13 @@ Page({
     }
   },
   onPullDownRefresh() {
+    this.data.page = 1
     this.initShippingAddress()
     wx.stopPullDownRefresh()
   },
   deleteAddress(e) {
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
-    console.log('index', index);
     wx.showModal({
       content: '确定要删除该收货地址吗？',
       success: async (res) => {
@@ -92,7 +91,10 @@ Page({
               title: '删除成功',
               icon: 'none'
             })
-            this.initShippingAddress()
+            this.data.addressList.splice(index, 1)
+            this.setData({
+              addressList: this.data.addressList
+            })
           }
         }
       }
